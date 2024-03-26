@@ -838,9 +838,8 @@ export interface ApiPagePage extends Schema.CollectionType {
   };
   attributes: {
     pageTitle: Attribute.String;
-    pageHero: Attribute.Media;
+    slug: Attribute.UID<'api::page.page', 'pageTitle'> & Attribute.Required;
     content: Attribute.RichText;
-    slug: Attribute.UID<'api::page.page', 'pageTitle'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -851,37 +850,34 @@ export interface ApiPagePage extends Schema.CollectionType {
   };
 }
 
-export interface ApiPortfolioProjectPortfolioProject
-  extends Schema.CollectionType {
-  collectionName: 'portfolio_projects';
+export interface ApiProjectProject extends Schema.CollectionType {
+  collectionName: 'projects';
   info: {
-    singularName: 'portfolio-project';
-    pluralName: 'portfolio-projects';
-    displayName: 'Portfolio Projects';
+    singularName: 'project';
+    pluralName: 'projects';
+    displayName: 'Projects';
     description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    projectName: Attribute.String;
+    projectTitle: Attribute.String;
+    slug: Attribute.UID<'api::project.project', 'projectTitle'> &
+      Attribute.Required;
     projectGallery: Attribute.Media;
     projectContent: Attribute.RichText;
-    slug: Attribute.UID<
-      'api::portfolio-project.portfolio-project',
-      'projectName'
-    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
-      'api::portfolio-project.portfolio-project',
+      'api::project.project',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
     updatedBy: Attribute.Relation<
-      'api::portfolio-project.portfolio-project',
+      'api::project.project',
       'oneToOne',
       'admin::user'
     > &
@@ -909,7 +905,7 @@ declare module '@strapi/types' {
       'plugin::i18n.locale': PluginI18NLocale;
       'api::header.header': ApiHeaderHeader;
       'api::page.page': ApiPagePage;
-      'api::portfolio-project.portfolio-project': ApiPortfolioProjectPortfolioProject;
+      'api::project.project': ApiProjectProject;
     }
   }
 }

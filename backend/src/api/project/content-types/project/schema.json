@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "portfolio_projects",
+  "collectionName": "projects",
   "info": {
-    "singularName": "portfolio-project",
-    "pluralName": "portfolio-projects",
-    "displayName": "Portfolio Projects",
+    "singularName": "project",
+    "pluralName": "projects",
+    "displayName": "Projects",
     "description": ""
   },
   "options": {
@@ -12,8 +12,13 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "projectName": {
+    "projectTitle": {
       "type": "string"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "projectTitle",
+      "required": true
     },
     "projectGallery": {
       "type": "media",
@@ -25,10 +30,6 @@
     },
     "projectContent": {
       "type": "richtext"
-    },
-    "slug": {
-      "type": "uid",
-      "targetField": "projectName"
     }
   }
 }
