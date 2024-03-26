@@ -1,5 +1,6 @@
 import { Navigation } from "../Navigation/Navigation";
 import { MobileNavigation } from "../MobileNavigation";
+import { getNavLinks } from "@/lib/strapi";
 
 export interface IPageNavData {
   slug: string;
@@ -9,12 +10,12 @@ export interface IPageNavData {
 interface IProps {}
 
 export const TopBar: React.FC<IProps> = async () => {
-  const allPagesData: IPageNavData[] = [];
+  const navLinks = await getNavLinks();
 
   return (
     <div className="sticky mx-auto w-full">
-      <Navigation pages={allPagesData} />
-      <MobileNavigation pages={allPagesData} />
+      <Navigation pages={navLinks} />
+      <MobileNavigation pages={navLinks} />
     </div>
   );
 };
