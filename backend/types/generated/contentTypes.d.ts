@@ -825,13 +825,14 @@ export interface ApiPagePage extends Schema.CollectionType {
     singularName: 'page';
     pluralName: 'pages';
     displayName: 'Pages';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
     pageTitle: Attribute.String;
-    slug: Attribute.UID<'api::page.page', 'pageTitle'>;
+    slug: Attribute.UID<'api::page.page', 'pageTitle'> & Attribute.Required;
     content: Attribute.RichText;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -849,13 +850,15 @@ export interface ApiProjectProject extends Schema.CollectionType {
     singularName: 'project';
     pluralName: 'projects';
     displayName: 'Projects';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
     projectTitle: Attribute.String;
-    slug: Attribute.UID<'api::project.project', 'projectTitle'>;
+    slug: Attribute.UID<'api::project.project', 'projectTitle'> &
+      Attribute.Required;
     projectGallery: Attribute.Media;
     projectContent: Attribute.RichText;
     createdAt: Attribute.DateTime;
