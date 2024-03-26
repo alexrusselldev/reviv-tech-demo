@@ -843,6 +843,39 @@ export interface ApiPagePage extends Schema.CollectionType {
   };
 }
 
+export interface ApiProjectProject extends Schema.CollectionType {
+  collectionName: 'projects';
+  info: {
+    singularName: 'project';
+    pluralName: 'projects';
+    displayName: 'Projects';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    projectTitle: Attribute.String;
+    slug: Attribute.UID<'api::project.project', 'projectTitle'>;
+    projectGallery: Attribute.Media;
+    projectContent: Attribute.RichText;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::project.project',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::project.project',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -863,6 +896,7 @@ declare module '@strapi/types' {
       'plugin::i18n.locale': PluginI18NLocale;
       'api::header.header': ApiHeaderHeader;
       'api::page.page': ApiPagePage;
+      'api::project.project': ApiProjectProject;
     }
   }
 }
