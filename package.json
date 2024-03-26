@@ -1,0 +1,17 @@
+{
+  "name": "reviv-tech-demo",
+  "version": "1.0.0",
+  "description": "Tech demo for Reviv",
+  "main": ".",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint-commit": "devmoji -e --lint",
+    "prepare": "husky"
+  },
+  "author": "Alex Russell",
+  "license": "ISC",
+  "devDependencies": {
+    "devmoji": "^2.3.0",
+    "husky": "^9.0.11"
+  }
+}
