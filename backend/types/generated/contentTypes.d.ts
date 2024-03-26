@@ -802,6 +802,11 @@ export interface ApiHeaderHeader extends Schema.SingleType {
   attributes: {
     siteTitle: Attribute.String;
     siteLogo: Attribute.Media;
+    navLinks: Attribute.Relation<
+      'api::header.header',
+      'oneToMany',
+      'api::page.page'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -826,6 +831,7 @@ export interface ApiPagePage extends Schema.CollectionType {
     singularName: 'page';
     pluralName: 'pages';
     displayName: 'Pages';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -834,6 +840,7 @@ export interface ApiPagePage extends Schema.CollectionType {
     pageTitle: Attribute.String;
     pageHero: Attribute.Media;
     content: Attribute.RichText;
+    slug: Attribute.UID<'api::page.page', 'pageTitle'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -851,6 +858,7 @@ export interface ApiPortfolioProjectPortfolioProject
     singularName: 'portfolio-project';
     pluralName: 'portfolio-projects';
     displayName: 'Portfolio Projects';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -859,6 +867,10 @@ export interface ApiPortfolioProjectPortfolioProject
     projectName: Attribute.String;
     projectGallery: Attribute.Media;
     projectContent: Attribute.RichText;
+    slug: Attribute.UID<
+      'api::portfolio-project.portfolio-project',
+      'projectName'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

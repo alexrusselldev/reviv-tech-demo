@@ -4,7 +4,8 @@
   "info": {
     "singularName": "portfolio-project",
     "pluralName": "portfolio-projects",
-    "displayName": "Portfolio Projects"
+    "displayName": "Portfolio Projects",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -15,14 +16,19 @@
       "type": "string"
     },
     "projectGallery": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
       "allowedTypes": [
         "images"
-      ],
-      "type": "media",
-      "multiple": true
+      ]
     },
     "projectContent": {
       "type": "richtext"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "projectName"
     }
   }
 }
