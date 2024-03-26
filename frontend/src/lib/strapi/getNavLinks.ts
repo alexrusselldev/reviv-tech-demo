@@ -1,7 +1,4 @@
-export interface INavLink {
-  label: string;
-  slug: string;
-}
+import { IPageNavData } from "@/components/TopBar";
 
 export interface ITopBar {
   data: {
@@ -18,7 +15,7 @@ export interface ITopBar {
     };
   };
 }
-export async function getNavLinks(): Promise<INavLink[]> {
+export async function getNavLinks(): Promise<IPageNavData[]> {
   const topBarRes = await await fetch(
     `${process.env.API_URL}top-bar?populate=*`
   );
@@ -29,14 +26,13 @@ export async function getNavLinks(): Promise<INavLink[]> {
 
   const topBar: ITopBar = await topBarRes.json();
 
-  const navLinks: INavLink[] = topBar?.data?.attributes?.navLinks?.data?.map?.(
-    (navLink) => {
+  const navLinks: IPageNavData[] =
+    topBar?.data?.attributes?.navLinks?.data?.map?.((navLink) => {
       return {
         label: navLink.attributes.pageTitle,
         slug: navLink.attributes.slug,
       };
-    }
-  );
+    });
 
   return navLinks || [];
 }
