@@ -794,6 +794,7 @@ export interface ApiHeaderHeader extends Schema.SingleType {
     singularName: 'header';
     pluralName: 'headers';
     displayName: 'Header';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -801,6 +802,11 @@ export interface ApiHeaderHeader extends Schema.SingleType {
   attributes: {
     siteTitle: Attribute.String;
     siteLogo: Attribute.Media;
+    navLinks: Attribute.Relation<
+      'api::header.header',
+      'oneToMany',
+      'api::page.page'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

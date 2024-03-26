@@ -4,7 +4,8 @@
   "info": {
     "singularName": "header",
     "pluralName": "headers",
-    "displayName": "Header"
+    "displayName": "Header",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -15,11 +16,17 @@
       "type": "string"
     },
     "siteLogo": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
+    },
+    "navLinks": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::page.page"
     }
   }
 }
