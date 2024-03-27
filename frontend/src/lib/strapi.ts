@@ -56,3 +56,11 @@ export async function getPortfolioProject(slug: string): Promise<any> {
 
   return project.data[0];
 }
+
+export async function getAllProjects(): Promise<any> {
+  const res = await fetch(`${process.env.API_URL}/api/projects?populate=*`);
+
+  const project = await res.json();
+
+  return project.data;
+}
