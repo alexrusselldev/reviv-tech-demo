@@ -2,13 +2,19 @@ import { MDXRemoteWrapper } from "@/components/MDXRemoteWrapper";
 import { getPage } from "@/lib/strapi";
 import { NextPage } from "next";
 import { serialize } from "next-mdx-remote/serialize";
-import { headers } from "next/headers";
 
-interface IProps {}
+interface IProps {
+  params: {
+    slug: string;
+  };
+}
 
-const Page: NextPage<IProps> = async () => {
-  const pageData = await getPage("home");
+const Page: NextPage<IProps> = async (props) => {
+  const { params } = props;
+  const pageData = await getPage(params.slug);
+
   const content = await serialize(pageData.attributes.content);
+
   return (
     <div>
       <MDXRemoteWrapper {...content} />
