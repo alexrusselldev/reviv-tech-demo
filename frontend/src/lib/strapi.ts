@@ -27,3 +27,13 @@ export async function getHeader(): Promise<IHeaderData> {
     siteTitle: data?.attributes?.siteTitle,
   };
 }
+
+export async function getPage(slug: string): Promise<any> {
+  const res = await fetch(
+    `${process.env.API_URL}/api/pages?filters[slug][$eq]=${slug}`
+  );
+
+  const page = await res.json();
+
+  return page.data[0];
+}
