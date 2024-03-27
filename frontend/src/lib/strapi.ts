@@ -42,3 +42,17 @@ export async function getPage(slug: string): Promise<any> {
 
   return page.data[0];
 }
+
+export async function getPortfolioProject(slug: string): Promise<any> {
+  const res = await fetch(
+    `${process.env.API_URL}/api/projects?filters[slug][$eq]=${slug}`
+  );
+
+  const page = await res.json();
+
+  if (!page?.data || page.data.length == 0) {
+    notFound();
+  }
+
+  return page.data[0];
+}
