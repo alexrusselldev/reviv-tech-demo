@@ -1,4 +1,5 @@
 import { IHeaderData } from "@/components/Header";
+import { notFound } from "next/navigation";
 
 export async function getHeader(): Promise<IHeaderData> {
   const res = await fetch(`${process.env.API_URL}/api/header?populate=*`);
@@ -34,6 +35,10 @@ export async function getPage(slug: string): Promise<any> {
   );
 
   const page = await res.json();
+
+  if (!page?.data || page.data.length == 0) {
+    notFound();
+  }
 
   return page.data[0];
 }

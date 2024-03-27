@@ -18,7 +18,6 @@ export interface IHeaderData {
 export const Header: React.FC<IProps> = async () => {
   const headerData: IHeaderData = await getHeader();
 
-  console.log(headerData);
   return (
     <div className="sticky mx-auto w-full">
       <Navigation pages={headerData.nav} />
