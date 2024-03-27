@@ -2,6 +2,7 @@ import { ImageWithFallback } from "../ImageWithFallback";
 import Link from "next/link";
 
 interface IProps {
+  parent: string;
   items: {
     slug: string;
     title: string;
@@ -13,7 +14,7 @@ interface IProps {
 }
 
 export const CardGrid: React.FC<IProps> = (props) => {
-  const { items } = props;
+  const { parent, items } = props;
   return (
     <div className="mx-auto max-w-md sm:max-w-xl md:max-w-3xl">
       <ul className="flex grid-cols-2 flex-col gap-4 sm:grid md:grid-cols-3">
@@ -21,7 +22,7 @@ export const CardGrid: React.FC<IProps> = (props) => {
           return (
             <li key={slug}>
               <Link
-                href={`/blog/${slug}`}
+                href={`/${parent}/${slug}`}
                 className="flex flex-col items-center"
               >
                 <ImageWithFallback src={image.src} alt={image.alt} />

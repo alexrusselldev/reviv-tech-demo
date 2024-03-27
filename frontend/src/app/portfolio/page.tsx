@@ -30,7 +30,7 @@ const Page: NextPage<IProps> = async () => {
     <div>
       <MDXRemoteWrapper {...content} />
       <hr className="my-8 h-px border-0 bg-gray-200 dark:bg-gray-700"></hr>
-      <CardGrid items={projectCards} />
+      <CardGrid parent="portfolio" items={projectCards} />
     </div>
   );
 };
