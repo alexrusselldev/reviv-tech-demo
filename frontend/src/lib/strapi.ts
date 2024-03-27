@@ -45,14 +45,14 @@ export async function getPage(slug: string): Promise<any> {
 
 export async function getPortfolioProject(slug: string): Promise<any> {
   const res = await fetch(
-    `${process.env.API_URL}/api/projects?filters[slug][$eq]=${slug}`
+    `${process.env.API_URL}/api/projects?filters[slug][$eq]=${slug}&populate=*`
   );
 
-  const page = await res.json();
+  const project = await res.json();
 
-  if (!page?.data || page.data.length == 0) {
+  if (!project?.data || project.data.length == 0) {
     notFound();
   }
 
-  return page.data[0];
+  return project.data[0];
 }
